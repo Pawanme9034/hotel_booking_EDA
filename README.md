@@ -72,30 +72,12 @@ Dataset Loading
 # Load Dataset throug github 
 database = "https://raw.githubusercontent.com/Pawanme9034/hotel_booking_EDA/main/Hotel%20Bookings.csv"
 hotel_booking_df =pd.read_csv(database)
-
-     
-
-#   connecting google drive
-# from google.colab import drive
-# drive.mount('/content/drive')
-#    Load Dataset throug google drive
-#    path of .csv filr in google drive is /content/drive/MyDrive/Colab Notebooks/Copy of Hotel Bookings.csv in my case.
-# database = "/content/drive/MyDrive/Colab Notebooks/Copy of Hotel Bookings.csv"
-# hotel_booking_df =pd.read_csv(database)
-     
+    
 Dataset First View
 
 # Dataset First Look
 pd.set_option('display.max_columns',32)
 hotel_booking_df.head()
-     
-hotel	is_canceled	lead_time	arrival_date_year	arrival_date_month	arrival_date_week_number	arrival_date_day_of_month	stays_in_weekend_nights	stays_in_week_nights	adults	children	babies	meal	country	market_segment	distribution_channel	is_repeated_guest	previous_cancellations	previous_bookings_not_canceled	reserved_room_type	assigned_room_type	booking_changes	deposit_type	agent	company	days_in_waiting_list	customer_type	adr	required_car_parking_spaces	total_of_special_requests	reservation_status	reservation_status_date
-0	Resort Hotel	0	342	2015	July	27	1	0	0	2	0.0	0	BB	PRT	Direct	Direct	0	0	0	C	C	3	No Deposit	NaN	NaN	0	Transient	0.0	0	0	Check-Out	2015-07-01
-1	Resort Hotel	0	737	2015	July	27	1	0	0	2	0.0	0	BB	PRT	Direct	Direct	0	0	0	C	C	4	No Deposit	NaN	NaN	0	Transient	0.0	0	0	Check-Out	2015-07-01
-2	Resort Hotel	0	7	2015	July	27	1	0	1	1	0.0	0	BB	GBR	Direct	Direct	0	0	0	A	C	0	No Deposit	NaN	NaN	0	Transient	75.0	0	0	Check-Out	2015-07-02
-3	Resort Hotel	0	13	2015	July	27	1	0	1	1	0.0	0	BB	GBR	Corporate	Corporate	0	0	0	A	A	0	No Deposit	304.0	NaN	0	Transient	75.0	0	0	Check-Out	2015-07-02
-4	Resort Hotel	0	14	2015	July	27	1	0	2	2	0.0	0	BB	GBR	Online TA	TA/TO	0	0	0	A	A	0	No Deposit	240.0	NaN	0	Transient	98.0	0	1	Check-Out	2015-07-03
-Dataset Rows & Columns count
 
 # Dataset Rows & Columns count
 print(hotel_booking_df.index)
@@ -299,16 +281,6 @@ list(hotel_booking_df.columns)
 # Dataset Describe.
 hotel_booking_df.describe()
      
-is_canceled	lead_time	arrival_date_year	arrival_date_week_number	arrival_date_day_of_month	stays_in_weekend_nights	stays_in_week_nights	adults	children	babies	is_repeated_guest	previous_cancellations	previous_bookings_not_canceled	booking_changes	agent	company	days_in_waiting_list	adr	required_car_parking_spaces	total_of_special_requests
-count	87396.000000	87396.000000	87396.000000	87396.000000	87396.000000	87396.000000	87396.000000	87396.000000	87392.000000	87396.000000	87396.000000	87396.000000	87396.000000	87396.000000	75203.000000	5259.000000	87396.000000	87396.000000	87396.000000	87396.000000
-mean	0.274898	79.891368	2016.210296	26.838334	15.815541	1.005263	2.625395	1.875795	0.138640	0.010824	0.039075	0.030413	0.183990	0.271603	94.138306	183.081384	0.749565	106.337246	0.084226	0.698567
-std	0.446466	86.052325	0.686102	13.674572	8.835146	1.031921	2.053584	0.626500	0.455881	0.113597	0.193775	0.369145	1.731894	0.727245	113.188172	130.557608	10.015731	55.013953	0.281533	0.831946
-min	0.000000	0.000000	2015.000000	1.000000	1.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	1.000000	6.000000	0.000000	-6.380000	0.000000	0.000000
-25%	0.000000	11.000000	2016.000000	16.000000	8.000000	0.000000	1.000000	2.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	9.000000	47.000000	0.000000	72.000000	0.000000	0.000000
-50%	0.000000	49.000000	2016.000000	27.000000	16.000000	1.000000	2.000000	2.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	14.000000	169.000000	0.000000	98.100000	0.000000	0.000000
-75%	1.000000	125.000000	2017.000000	37.000000	23.000000	2.000000	4.000000	2.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	240.000000	263.000000	0.000000	134.000000	0.000000	1.000000
-max	1.000000	737.000000	2017.000000	53.000000	31.000000	19.000000	50.000000	55.000000	10.000000	10.000000	1.000000	26.000000	72.000000	21.000000	535.000000	543.000000	391.000000	5400.000000	8.000000	5.000000
-Variables Description
 hotel : Types of the hotel (Resort Hotel or City Hotel)
 
 is_canceled : If the booking was canceled (1) or not (0)
