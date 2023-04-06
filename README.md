@@ -1,10 +1,16 @@
 # hotel_booking_EDA
 
-Open In Colab
+
+
 Project Name - Hotel Booking Analysis
+
+
 Project Type - EDA
+
 Contribution - Individual
+
 Name - Pawan Kumar Singh
+
 Project Summary -
 This project is related to Hotel Booking Analysis.
 
