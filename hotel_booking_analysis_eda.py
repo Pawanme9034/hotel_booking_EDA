@@ -31,7 +31,7 @@ Original file is located at
 
 # **GitHub Link -**
 
-**Github Link:**    [https://github.com/Pawanme9034/hotel_booking_EDA]
+**Github Link:**    https://github.com/Pawanme9034/hotel_booking_EDA/blob/main/Hotel_Booking_Analysis_EDA.ipynb
 
 # **Problem Statement**
 
@@ -47,7 +47,7 @@ Original file is located at
 10. How ADR affect cancelation?
 11. which meal type preferred mostly?
 12. Which months have most booking rates?
-13. How many number of guests required car pariking spaces?
+13. How many number of guests required car parking spaces?
 
 # ***Let's Begin !***
 
@@ -70,7 +70,7 @@ import plotly.express as px
 """### Dataset Loading"""
 
 # Load Dataset throug github 
-database = "https://raw.githubusercontent.com/Pawanme9034/hotel_booking_EDA/main/Hotel%20Bookings.csv"
+database = "https://raw.githubusercontent.com/Pawanme9034/hotel_booking_EDA/main/Hotel%20Bookings.csv?token=GHSAT0AAAAAACBCJTNFXRTKHN4W2NO4ZQP6ZCGFFVA"
 hotel_booking_df =pd.read_csv(database)
 
 #   connecting google drive
@@ -143,7 +143,7 @@ print(percentage_null[:4])
 
 2. In this dataset contains total rows 119390 and 32 columns.
 3. The dataset contains **31994** duplicate rows.Unique row - **87396**
-4. 'company' colume have 93.98% null values. so we drop the column
+4. 'company' colume have 93.98% null values.
 
 ## ***2. Understanding Your Variables***
 """
@@ -240,19 +240,22 @@ hotel_booking_df['agent'].fillna(value = 0, inplace = True)
 # re-check that column has no null value
 hotel_booking_df['agent'].isnull().sum()
 
-# there are less null vlues in 'children' colunm, so replace null from 0
+# there are less null values in 'children' colunm, so replace null from 0
 
 hotel_booking_df['children'].fillna(value = 0, inplace = True)
 # re-check that column has no null value
 hotel_booking_df['children'].isnull().sum()
 
-# ther are less null vlues in country colunm, so replace null from 'others' because 'country' colunm dtype is object type.
+# ther are less null values in country colunm, so replace null from 'others' because 'country' colunm dtype is object type.
 
 hotel_booking_df['country'].fillna(value = 'others', inplace = True)
+
 # re-check that column has no null value
+
 hotel_booking_df['country'].isnull().sum()
 
 #checking whether database having any other null value
+
 hotel_booking_df.isnull().sum()
 
 """### there are no null valus in any colunms
@@ -292,7 +295,7 @@ hotel_booking_df['is_repeated_guest'].value_counts()
 hotel_wise_total_revenue = hotel_booking_df.groupby('hotel')['revenue'].sum()
 hotel_wise_total_revenue
 
-hotel_booking_df[['hotel', "revenue"]]
+hotel_booking_df[['hotel', "revenue",'is_canceled_flot64','is_repeated_guest']]
 
 """### What all manipulations have you done and insights you found?
 
@@ -375,7 +378,7 @@ city hotel have more guest. need to find solution to attract moer guests for res
 # Chart - 2 visualization code
 # plot a count chart from know booking cancelation
 # create countplot with hue
-ax = sns.countplot(data=hotel_booking_df, hue='is_canceled', x='hotel')
+ax = sns.countplot(data=hotel_booking_df, hue='is_canceled_flot64', x='hotel')
 
 # get total number of observations
 nobs = len(hotel_booking_df)
@@ -419,7 +422,7 @@ Overall, the insights gained from the analysis of hotel booking data can have a 
 
 # Chart - 3
 
-## Q.3. Which are the most prefareble channal for hotel booking?
+## Q.3. Which are the most preferable channel for hotel booking?
 """
 
 # Chart - 3 visualization code
@@ -516,7 +519,12 @@ However, there are potential negative impacts associated with this insight. If t
 """
 
 # chat - 5 visulization code
-hotel_booking_df['is_repeated_guest'].value_counts().plot.pie(autopct='%1.2f%%',startangle=90,shadow=True, labeldistance = 1.2, explode = [0,0.3],radius=1.2);
+labels = ['Non-repeated Guest', 'Repeated Guest']
+colors = ['#ff9999','#66b3ff']
+
+hotel_booking_df['is_repeated_guest'].value_counts().plot.pie(autopct='%1.2f%%',startangle=90,shadow=True, 
+                                                             labeldistance = 1.2, explode = [0,0.3],radius=1.2,
+                                                             colors = colors, labels=labels);
 plt.legend(loc=3);
 plt.title('Guest repeating status');
 plt.pie([1],colors="w");
@@ -537,7 +545,7 @@ However, this insight can also be used to create a positive business impact by i
 
 # Chart - 6
 
-##Q.6. Which type of room prefernce given by guest?
+##Q.6. Which type of room preference given by guest?
 """
 
 # chat - 6 visulization code
@@ -834,7 +842,7 @@ On the other hand, if there is a sudden decrease in bookings during these months
 
 # Chart -13
 
-###Q.13. How many number of guests required car pariking spaces?
+###Q.13. How many number of guests required car parking spaces?
 """
 
 # Chart - 13 visualization code
@@ -873,7 +881,7 @@ The insight that a very less number of guests require parking spaces may not nec
 
 # Chart - 14 visualization code
 # Correlation heatmap
-corr_df = hotel_booking_df[['lead_time','previous_cancellations', 'previous_bookings_not_canceled', 'total_guest',                    'booking_changes', 'days_in_waiting_list', 'adr', 'required_car_parking_spaces', 'total_of_special_requests']].corr()
+corr_df = hotel_booking_df[['lead_time','previous_cancellations', 'previous_bookings_not_canceled', 'total_guest','booking_changes', 'days_in_waiting_list', 'adr', 'required_car_parking_spaces', 'total_of_special_requests']].corr()
 plt.figure(figsize=(18,9))
 sns.heatmap(corr_df, cmap='CMRmap', annot=True, fmt='.2%', annot_kws={"fontsize":14})
 plt.show()
